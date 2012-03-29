@@ -393,7 +393,7 @@ public class NfcService extends Application implements DeviceHostListener {
     int checkScreenState() {
         if (!mPowerManager.isScreenOn()) {
             return SCREEN_STATE_OFF;
-        } else if (mKeyguard.isKeyguardLocked()) {
+        } else if (mKeyguard.isKeyguardSecure()) {
             return SCREEN_STATE_ON_LOCKED;
         } else {
             return SCREEN_STATE_ON_UNLOCKED;
@@ -1784,7 +1784,7 @@ public class NfcService extends Application implements DeviceHostListener {
                 if (action.equals(Intent.ACTION_SCREEN_OFF)) {
                     screenState = SCREEN_STATE_OFF;
                 } else if (action.equals(Intent.ACTION_SCREEN_ON)) {
-                    screenState = mKeyguard.isKeyguardLocked() ?
+                    screenState = mKeyguard.isKeyguardSecure() ?
                             SCREEN_STATE_ON_LOCKED : SCREEN_STATE_ON_UNLOCKED;
                 } else if (action.equals(Intent.ACTION_USER_PRESENT)) {
                     screenState = SCREEN_STATE_ON_UNLOCKED;
